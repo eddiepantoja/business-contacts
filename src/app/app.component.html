@@ -11,6 +11,90 @@
   <main class="mdl-layout">
     <div class="page-content">
 
+      <div class="container mdl-color--white mdl-shadow--2dp">
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--6-col">
+            <button (click)="changeState('add')" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Add Business</button>
+          </div>
+          <div class="mdl-cell mdl-cell--6-col">
+            <label>
+              <select (change)="filterCategory(filteredCategory.value)" #filteredCategory>
+                <option value="0">Select / All</option>
+                <option *ngFor="let category of categories" value="{{category.name}}">{{category.name}}</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="appState == 'add'">
+        <div class="container mdl-color--white">
+          <h3>Add Business</h3>
+          <form (submit)="addBusiness(
+                  company.value,
+                  category.value,
+                  years_in_business.value,
+                  description.value,
+                  phone.value,
+                  email.value,
+                  street_address.value,
+                  city.value,
+                  state.value,
+                  zipcode.value)"> 
+            <div class="mdl-grid">
+
+              <div class="mdl-cell mdl-cell--6-col">  
+                <label>Company</label>
+                  <input type="text" placeholder="Company Name" #company>
+              </div>
+              <div class="mdl-cell mdl-cell--6-col"> 
+                  <label>Category</label>
+                  <select #category>
+                    <option value="0">Select</option>
+                    <option *ngFor="let category of categories" value="{{category.name}}">{{category.name}}</option>
+                  </select>
+              </div>
+              <div class="mdl-cell mdl-cell--6-col">  
+                <label>Years In Business</label>
+                  <input type="text" placeholder="Years In Business" #years_in_business>
+              </div>
+              <div class="mdl-cell mdl-cell--6-col"> 
+                <label>Description</label>
+                  <textarea #description> </textarea>
+              </div>
+              <div class="mdl-cell mdl-cell--6-col">  
+                <label>Phone</label>
+                  <input type="text" placeholder="Phone" #phone>
+              </div>
+              <div class="mdl-cell mdl-cell--6-col"> 
+                <label>Email</label>
+                  <input type="text" placeholder="Email" #email>
+              </div>
+              <div class="mdl-cell mdl-cell--6-col">  
+                <label>Street Address</label>
+                  <input type="text" placeholder="Street Address" #street_address>
+              </div>
+              <div class="mdl-cell mdl-cell--6-col"> 
+                <label>City</label>
+                  <input type="text" placeholder="City" #city>
+              </div>
+              <div class="mdl-cell mdl-cell--6-col">  
+                <label>State</label>
+                  <input type="text" placeholder="State" #state>
+              </div>
+              <div class="mdl-cell mdl-cell--6-col"> 
+                <label>Zipcode</label>
+                  <input type="text" placeholder="Zipcode" #zipcode>
+              </div>
+              <div class="mdl-cell mdl-cell--12-col"> 
+                  <input type="submit" value="Submit">
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+
       <div *ngIf="appState == 'extend'">
         <div class="container mdl-color--white">
           <button (click)="changeState('default')" class="mdl-button mdl-js-button mdl-button--raised">Go Back</button>
