@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import  { FirebaseService } from './services/firebase.service';
 
 import { Business } from './models/business';
 import { Category } from './models/category';
+
+declare var componentHandler: any;
 
 @Component({
   selector: 'app-root',
@@ -15,6 +17,17 @@ export class AppComponent implements OnInit {
   categories:Category[];
   appState: string;
   activeKey: string;
+
+  activeCompany:string;
+  activeCategory:string;
+  activeYears_in_business:number;
+  activeDescription:string;
+  activePhone:string;
+  activeEmail:string;
+  activeStreet_address:string;
+  activeCity:string;
+  activeState:string;
+  activeZipcode:string;
 
   constructor(private _firebaseService:FirebaseService){
     
@@ -76,4 +89,42 @@ export class AppComponent implements OnInit {
 
       this.changeState('default', '');
   }
+
+  showEdit(business){
+    this.changeState('edit', business.$key);
+    this.activeCompany            = business.company;
+    this.activeCategory           = business.category;
+    this.activeYears_in_business  = business.years_in_business;
+    this.activeDescription        = business.description;
+    this.activePhone              = business.phone;
+    this.activeEmail              = business.email;
+    this.activeStreet_address     = business.street_address;
+    this.activeCity               = business.city;
+    this.activeState              = business.state;
+    this.activeZipcode            = business.zipcode;
+  }
+
+  updateBusiness(){
+    var updBusiness ={
+      company:this.activeCompany,
+      category:this.activeCategory,
+      years_in_business:this.activeYears_in_business,
+      description:this.activeDescription,
+      phone:this.activePhone,
+      email:this.activeEmail,
+      street_address:this.activeStreet_address,
+      city:this.activeCity,
+      zipcode:this.activeZipcode
+    }
+      this._firebaseService.updateBusiness(this.activeKey, updBusiness);
+
+      this.changeState('default', '');
+  }
+
+  deleteBusiness(key){
+    this._firebaseService.deleteBusiness(key);
+
+    this.changeState('default', '');
+  }
+
 }

@@ -27,6 +27,7 @@
         </div>
       </div>
 
+      <!-- Add Company -->
       <div *ngIf="appState == 'add'">
         <div class="container mdl-color--white">
           <h3>Add Business</h3>
@@ -40,51 +41,129 @@
                   street_address.value,
                   city.value,
                   state.value,
-                  zipcode.value)"> 
+                  zipcode.value)">
+            <div class="mdl-grid">
+
+              <div class="mdl-cell mdl-cell--6-col">  
+                <div class="mdl-textfield mdl-js-textfield">
+                  <label class="mdl-textfield__label">Company</label>
+                    <input class="mdl-textfield__input" type="text" placeholder="Company Name" #company>
+                </div>
+              </div>
+              <div class="mdl-cell mdl-cell--6-col">
+                    <label>Category</label>
+                    <select #category>
+                  <option valu
+                    e="0">Select</option>
+                    <option *ngFor="let category of categories" value="{{category.name}}">{{category.name}}</option>
+                  </select>
+              </div>
+              <div class="mdl-cell mdl-cell--6-col">  
+                <div class="mdl-textfield mdl-js-textfield">
+                  <label class="mdl-textfield__label">Years In Business</label>
+                    <input class="mdl-textfield__input" type="text" placeholder="Years In Business" #years_in_business>
+                </div>
+              </div>
+              <div class="mdl-cell mdl-cell--6-col"> 
+                <div class="mdl-textfield mdl-js-textfield">
+                  <label class="mdl-textfield__label">Description</label>
+                    <textarea class="mdl-textfield__input" #description> </textarea>
+                </div>
+              </div>
+              <div class="mdl-cell mdl-cell--6-col">  
+                <div class="mdl-textfield mdl-js-textfield">
+                  <label class="mdl-textfield__label">Phone</label>
+                    <input class="mdl-textfield__input" type="text" placeholder="Phone" #phone>
+                </div>
+              </div>
+              <div class="mdl-cell mdl-cell--6-col"> 
+                <div class="mdl-textfield mdl-js-textfield">
+                  <label class="mdl-textfield__label">Email</label>
+                    <input class="mdl-textfield__input" type="text" placeholder="Email" #email>
+                </div>
+              </div>
+              <div class="mdl-cell mdl-cell--6-col">  
+                <div class="mdl-textfield mdl-js-textfield">
+                  <label class="mdl-textfield__label">Street Address</label>
+                    <input class="mdl-textfield__input" type="text" placeholder="Street Address" #street_address>
+                </div>
+              </div>
+              <div class="mdl-cell mdl-cell--6-col"> 
+                <div class="mdl-textfield mdl-js-textfield">
+                  <label class="mdl-textfield__label">City</label>
+                    <input class="mdl-textfield__input" type="text" placeholder="City" #city>
+                </div>
+              </div>
+              <div class="mdl-cell mdl-cell--6-col">  
+                <div class="mdl-textfield mdl-js-textfield">
+                  <label class="mdl-textfield__label">State</label>
+                    <input class="mdl-textfield__input" type="text" placeholder="State" #state>
+                </div>
+              </div>
+              <div class="mdl-cell mdl-cell--6-col"> 
+                <div class="mdl-textfield mdl-js-textfield">
+                  <label class="mdl-textfield__label">Zipcode</label>
+                    <input class="mdl-textfield__input" type="text" placeholder="Zipcode" #zipcode>
+                </div>
+              </div>
+              <div class="mdl-cell mdl-cell--12-col"> 
+                  <input type="submit" value="Submit">
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Edit Company -->
+      <div *ngIf="appState == 'edit'">
+        <div class="container mdl-color--white">
+          <h3>Edit Business</h3>
+          <form (submit)="updateBusiness()"> 
             <div class="mdl-grid">
 
               <div class="mdl-cell mdl-cell--6-col">  
                 <label>Company</label>
-                  <input type="text" placeholder="Company Name" #company>
+                  <input type="text" [(ngModel)]="activeCompany" name="activeCompany" placeholder="Company Name" #company>
               </div>
               <div class="mdl-cell mdl-cell--6-col"> 
                   <label>Category</label>
-                  <select #category>
+                  <select [(ngModel)]="activeCategory" name="activeCategory" #category>
                     <option value="0">Select</option>
                     <option *ngFor="let category of categories" value="{{category.name}}">{{category.name}}</option>
                   </select>
               </div>
               <div class="mdl-cell mdl-cell--6-col">  
                 <label>Years In Business</label>
-                  <input type="text" placeholder="Years In Business" #years_in_business>
+                  <input type="text" [(ngModel)]="activeYears_in_business" name="activeYears_in_business" placeholder="Years In Business" #years_in_business>
               </div>
               <div class="mdl-cell mdl-cell--6-col"> 
                 <label>Description</label>
-                  <textarea #description> </textarea>
+                  <textarea [(ngModel)]="activeDescription" name="activeDescription" #description> </textarea>
               </div>
               <div class="mdl-cell mdl-cell--6-col">  
                 <label>Phone</label>
-                  <input type="text" placeholder="Phone" #phone>
+                  <input type="text" [(ngModel)]="activePhone" name="activePhone" placeholder="Phone" #phone>
               </div>
               <div class="mdl-cell mdl-cell--6-col"> 
                 <label>Email</label>
-                  <input type="text" placeholder="Email" #email>
+                  <input type="text" [(ngModel)]="activeEmail" name="activeEmail" placeholder="Email" #email>
               </div>
               <div class="mdl-cell mdl-cell--6-col">  
                 <label>Street Address</label>
-                  <input type="text" placeholder="Street Address" #street_address>
+                  <input type="text" [(ngModel)]="activeStreet_address" name="activeStreet_address" placeholder="Street Address" #street_address>
               </div>
               <div class="mdl-cell mdl-cell--6-col"> 
                 <label>City</label>
-                  <input type="text" placeholder="City" #city>
+                  <input type="text" [(ngModel)]="activeCity" name="activeCity" placeholder="City" #city>
               </div>
               <div class="mdl-cell mdl-cell--6-col">  
                 <label>State</label>
-                  <input type="text" placeholder="State" #state>
+                  <input type="text" [(ngModel)]="activeState" name="activeState" placeholder="State" #state>
               </div>
               <div class="mdl-cell mdl-cell--6-col"> 
                 <label>Zipcode</label>
-                  <input type="text" placeholder="Zipcode" #zipcode>
+                  <input type="text" [(ngModel)]="activeZipcode" name="activeZipcode" placeholder="Zipcode" #zipcode>
               </div>
               <div class="mdl-cell mdl-cell--12-col"> 
                   <input type="submit" value="Submit">
@@ -145,8 +224,8 @@
               <td>{{business.phone}}</td>
               <td>
                 <button (click)="changeState('extend', business.$key)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">More</button>
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Edit</button>
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Delete</button>
+                <button (click)="showEdit(business)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Edit</button>
+                <button (click)="deleteBusiness(business.$key)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Delete</button>
               </td>
             </tr>
           </tbody>
