@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import  { FirebaseService } from './services/firebase.service';
+import { MdDialog, MdDialogRef, MdSnackBar } from '@angular/material';
+import { FirebaseService } from './services/firebase.service';
 
 import { Business } from './models/business';
 import { Category } from './models/category';
