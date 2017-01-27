@@ -1,10 +1,37 @@
-.container {
-  width:90%;
-  max-width:900px;
-  margin: 20px auto;
+.app-content {
+  padding: 20px;
+  max-width: 850px;
+  margin: 0 auto;
 }
 
-.mdl-data-table {
-  margin: 0 auto;
-  width:100%;
+.app-content md-card {
+  margin: 20px;
+}
+
+.app-sidenav {
+  padding: 10px;
+  min-width: 100px;
+}
+
+.app-toolbar-filler {
+  flex: 1 1 auto;
+}
+
+.app-toolbar-menu {
+  padding: 0 14px 0 14px;
+  color: white;
+}
+
+.app-list {
+  border: 1px solid rgba(0,0,0,0.12);
+  width: 350px;
+  margin: 20px;
+}
+
+table {
+  margin:0 auto;
+}
+
+td {
+  padding: 5px 20px;
 }

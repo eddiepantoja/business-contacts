@@ -4,6 +4,7 @@
 </md-toolbar>
 
 <div class="app-content">
+
   <md-card>
     <button (click)="changeState('add')" md-raised-button color="primary">Add Business</button>
     <label>
@@ -13,66 +14,68 @@
       </select>
     </label>
   </md-card>
-      <!-- Add Company -->
-  <md-card>
-    <div *ngIf="appState == 'add'">
-        <h3>Add Business</h3>
-        <form (submit)="addBusiness(
-                company.value,
-                category.value,
-                years_in_business.value,
-                description.value,
-                phone.value,
-                email.value,
-                street_address.value,
-                city.value,
-                state.value,
-                zipcode.value)">
-          <md-grid-list cols="2" rowHeight="50px">
-            <md-grid-tile>
-              <md-input placeholder="Company Name" #company></md-input>
-            </md-grid-tile>
-            <md-grid-tile>
-              <label>Category</label>
-              <select #category>
-                <option value="0">Select</option>
-                <option *ngFor="let category of categories" value="{{category.name}}">{{category.name}}</option>
-              </select>
-            </md-grid-tile>
-            <md-grid-tile>  
-              <md-input  placeholder="Years In Business" #years_in_business></md-input>
-            </md-grid-tile>
-            <md-grid-tile> 
-              <md-textarea placeholder="Description" #description> </md-textarea>
-            </md-grid-tile>
-            <md-grid-tile>  
-              <md-input placeholder="Phone" #phone></md-input>
-            </md-grid-tile>
-            <md-grid-tile> 
-              <md-input placeholder="Email" #email></md-input>
-            </md-grid-tile>
-            <md-grid-tile>  
-              <md-input placeholder="Street Address" #street_address></md-input>
-            </md-grid-tile>
-            <md-grid-tile> 
-              <md-input placeholder="City" #city></md-input>
-            </md-grid-tile>
-            <md-grid-tile>  
-              <md-input placeholder="State" #state></md-input>
-            </md-grid-tile>
-            <md-grid-tile> 
-              <md-input placeholder="Zipcode" #zipcode></md-input>
-            </md-grid-tile>
-            <md-grid-tile> 
-              <input type="submit" value="Submit">
-            </md-grid-tile>
-          </md-grid-list>
-        </form>
-    </div>
-  </md-card>
+  
+  <!-- Add Company -->
+  <div *ngIf="appState == 'add'">
+    <md-card>
+      <h3>Add Business</h3>
+      <form (submit)="addBusiness(
+              company.value,
+              category.value,
+              years_in_business.value,
+              description.value,
+              phone.value,
+              email.value,
+              street_address.value,
+              city.value,
+              state.value,
+              zipcode.value)">
+        <md-grid-list cols="2" rowHeight="50px">
+          <md-grid-tile>
+            <md-input placeholder="Company Name" #company></md-input>
+          </md-grid-tile>
+          <md-grid-tile>
+            <label>Category </label>
+            <select #category>
+              <option value="0">Select</option>
+              <option *ngFor="let category of categories" value="{{category.name}}">{{category.name}}</option>
+            </select>
+          </md-grid-tile>
+          <md-grid-tile>  
+            <md-input  placeholder="Years In Business" #years_in_business></md-input>
+          </md-grid-tile>
+          <md-grid-tile> 
+            <md-textarea placeholder="Description" #description> </md-textarea>
+          </md-grid-tile>
+          <md-grid-tile>  
+            <md-input placeholder="Phone" #phone></md-input>
+          </md-grid-tile>
+          <md-grid-tile> 
+            <md-input placeholder="Email" #email></md-input>
+          </md-grid-tile>
+          <md-grid-tile>  
+            <md-input placeholder="Street Address" #street_address></md-input>
+          </md-grid-tile>
+          <md-grid-tile> 
+            <md-input placeholder="City" #city></md-input>
+          </md-grid-tile>
+          <md-grid-tile>  
+            <md-input placeholder="State" #state></md-input>
+          </md-grid-tile>
+          <md-grid-tile> 
+            <md-input placeholder="Zipcode" #zipcode></md-input>
+          </md-grid-tile>
+          <md-grid-tile> 
+            <input type="submit" value="Submit">
+          </md-grid-tile>
+        </md-grid-list>
+      </form>
+    </md-card>
+  </div>
+  
   <!-- Edit Company -->
-  <md-card>
-    <div *ngIf="appState == 'edit'">
+  <div *ngIf="appState == 'edit'">
+    <md-card>
       <h3>Edit Business</h3>
       <form (submit)="updateBusiness()"> 
         <md-grid-list cols="2" rowHeight="50px">
@@ -115,26 +118,26 @@
           </md-grid-tile>
         </md-grid-list>
       </form>
-    </div>
-  </md-card>
-
-  <md-card>
-    <div *ngIf="appState == 'extend'">
-
+    </md-card>
+  </div>
+  
+  <div *ngIf="appState == 'extend'">
+    <md-card>
       <button (click)="changeState('default')" md-raised-button color="primary">Go Back</button>
 
       <div *ngFor="let business of businesses">
         <div *ngIf="business.$key == activeKey">
 
-          <div>
-            <div fxFlex="80">
+          <div class="containerX">
+            <div [fxLayout]="direction" >
+              <div fxFlex="60">
                 <h3>{{business.company}}</h3>
                 <p>Category: {{business.category}}</p>
                 <p>Years In Business: {{business.years_in_business}}</p>
                 <p>{{business.description}}</p>
+              </div>
+              <div fxFlex="40">
                 <h4>Contact Info</h4>
-            </div>
-            <div fxFlex="20">
                 <md-list>
                   <md-list-item>Phone: {{business.phone}}</md-list-item>
                   <md-list-item>Email: {{business.email}}</md-list-item>
@@ -143,16 +146,17 @@
                   <md-list-item>State: {{business.state}}</md-list-item>
                   <md-list-item>Zipcode: {{business.zipcode}}</md-list-item>
                 </md-list>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </md-card>
+    </md-card>
+  </div>
 
   <div *ngIf="businesses">
     <md-card>
-      <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+      <table>
         <thead>
           <tr>
             <th>Company</th>
